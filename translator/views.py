@@ -2,13 +2,21 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .my_lang_translator import main
+from . import translate
+from . import config
 
-def translate(text):
-    return main.main(text)
+# def translate(text):
+#     return main.main(text)
 
 
 def translate_esperanto(text):
-    return main.translate_esperanto(text)
+    translator = translate.Translator(config.API_KEY)
+    return translator.yandex_translate('eo', text)
+
+
+def translate_to_conlang(text):
+    translator = translate.Translator(config.API_KEY)
+    return translator.translate_from_eo_to_conlang(text)
 
 
 def index(request):
@@ -22,7 +30,7 @@ def index(request):
             # english and esperanto is similiar
             result = esperanto
         else:
-            result = translate(text_to_translate)
+            result = translate_to_conlang(esperanto)
     return render(request, 'translator/index.html', {'text_to_translate': text_to_translate, 'result': result, 'esperanto': esperanto})
 
 

@@ -4,13 +4,17 @@
 
 {% block content %}
 
-<h1>
-  Here you can translate English into Am'anavio
-</h1>
-<h5>Please don't paste large texts - I have API limits</h5>
-<br>
-
 <div class="container-fluid">
+  <h1>
+    Here you can translate any language* into Amʔanavio
+  </h1>
+  <i>*that is supported by Yandex translator</i>
+  <br>
+  <br>
+  Please don't paste large texts - I have API limits
+  <br>
+  <!-- <br> -->
+
   <div class="row">
     <div class="col">
       <form>
@@ -21,12 +25,12 @@
       </form>
     </div>
     <div class="col">
-      <textarea rows="10" cols="80" name="result" placeholder="esperanto will be here">{{ esperanto }}</textarea>
+      <textarea rows="10" cols="80" name="result" placeholder="Esperanto will be here">{{ esperanto }}</textarea>
       <br>
       Переведено сервисом «<a href="http://translate.yandex.ru">Яндекс.Переводчик</a>» 
     </div>
     <div class="col">
-      <textarea rows="10" cols="80" name="result" placeholder="result will be here">{{ result }}</textarea>
+      <textarea rows="10" cols="80" name="result" placeholder="Amʔanavio will be here">{{ result }}</textarea>
     </div>
   </div>
 </div>
