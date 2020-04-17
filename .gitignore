@@ -1,2 +1,2 @@
 db.sqlite3
-./translator/my_lang_translator/config.py
+translator/my_lang_translator/config.py
