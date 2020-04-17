@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<h1>
+  here you can translate something
+</h1>
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <form>
+        <!-- <input type="text" name="text"> -->
+        <textarea rows="10" cols="80" name="text" placeholder="Enter text to translate">{{ text_to_translate }}</textarea>
+        <br>
+        <input type="submit">
+      </form>
+    </div>
+    <div class="col">
+      <textarea rows="10" cols="80" name="result" placeholder="esperanto will be here">{{ esperanto }}</textarea>
+      <br>
+      Переведено сервисом «Яндекс.Переводчик» <a href="http://translate.yandex.ru"></a>
+    </div>
+    <div class="col">
+      <textarea rows="10" cols="80" name="result" placeholder="result will be here">{{ result }}</textarea>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
