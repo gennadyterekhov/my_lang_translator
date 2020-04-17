@@ -3,3 +3,4 @@ translator/my_lang_translator/config.py
 my_lang/__pycache__
 translator/__pycache__
 translator/my_lang_translator/__pycache__
+translator/migrations/__pycache__
