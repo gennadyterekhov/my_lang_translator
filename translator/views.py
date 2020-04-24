@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from .my_lang_translator import main
 from . import translate
 from . import config
 
+from registration.models import User
 
 def translate_esperanto(text):
     translator = translate.Translator(config.API_KEY)
@@ -29,7 +30,11 @@ def index(request):
             result = esperanto
         else:
             result = translate_to_conlang(esperanto)
-    return render(request, 'translator/index.html', {'title': title, 'text_to_translate': text_to_translate, 'result': result, 'esperanto': esperanto})
+
+    # user = User.objects.filter(email=request.session['email'])[0]
+    user = get_object_or_404(User, email=request.session['email'])
+    context = {'title': title, 'user': user, 'text_to_translate': text_to_translate, 'result': result, 'esperanto': esperanto}
+    return render(request, 'translator/index.html', context)
 
 
 def result(request):
@@ -38,4 +43,8 @@ def result(request):
     # te = request.GET['text']
     # print(te)
     result = 'text that you typed: {}'.format(t)
-    return render(request, 'translator/index.html', {'title': title, 'text': t, 'result': result})
+    
+    # user = User.objects.filter(email=request.session['email'])[0]
+    user = get_object_or_404(User, email=request.session['email'])
+    context = {'title': title, 'user': user, 'text': t, 'result': result}
+    return render(request, 'translator/index.html', context)
