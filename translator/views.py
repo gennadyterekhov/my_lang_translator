@@ -5,9 +5,6 @@ from .my_lang_translator import main
 from . import translate
 from . import config
 
-# def translate(text):
-#     return main.main(text)
-
 
 def translate_esperanto(text):
     translator = translate.Translator(config.API_KEY)
@@ -20,6 +17,7 @@ def translate_to_conlang(text):
 
 
 def index(request):
+    title = 'Translate'
     text_to_translate = request.GET.get('text', '')
     if text_to_translate == '':
         esperanto = ''
@@ -31,12 +29,13 @@ def index(request):
             result = esperanto
         else:
             result = translate_to_conlang(esperanto)
-    return render(request, 'translator/index.html', {'text_to_translate': text_to_translate, 'result': result, 'esperanto': esperanto})
+    return render(request, 'translator/index.html', {'title': title, 'text_to_translate': text_to_translate, 'result': result, 'esperanto': esperanto})
 
 
 def result(request):
+    title = 'Translate'
     t = request.GET.get('text', '')
     # te = request.GET['text']
     # print(te)
     result = 'text that you typed: {}'.format(t)
-    return render(request, 'translator/index.html', {'text': t, 'result': result})
+    return render(request, 'translator/index.html', {'title': title, 'text': t, 'result': result})
