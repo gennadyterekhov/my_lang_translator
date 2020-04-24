@@ -8,5 +8,6 @@ translator/my_lang_translator/__pycache__
 translator/migrations/__pycache__
 translator/migrations/
 registration/__pycache__
+registration/__pycache__/
 registration/migrations/
 registration/migrations/__pycache__
