@@ -78,10 +78,12 @@ WSGI_APPLICATION = 'my_lang.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'ENGINE': 'djongo',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'NAME': os.path.join(BASE_DIR, 'my_lang_mongo'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'djongo',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'NAME': 'C:\Users\Gennady\code\python\django\my_lang\my_lang_mongo',
+        # 'NAME': 'C:/Users/Gennady/code/python/django/my_lang/my_lang_mongo'
+        'NAME': 'my_lang_mongo',
     }
 }
 
