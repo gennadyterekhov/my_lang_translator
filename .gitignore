@@ -6,3 +6,6 @@ my_lang/settings.py
 translator/__pycache__
 translator/my_lang_translator/__pycache__
 translator/migrations/__pycache__
+translator/migrations/
+registration/migrations/
+registration/migrations/__pycache__
