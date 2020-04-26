@@ -6,11 +6,15 @@
 
 <div class="container-fluid">
   <h1>
-    {{ user.email }} Profile
+    {{ user.name }}
   </h1>
+  <i>{{ user.email }}</i>
 
   <br>
-
+  {% for conlang in conlangs %}
+    <a href="{% url 'conlang_creator:profile' conlang.id %}">{{ conlang.original_name }}</a> <i>{{ conlang.english_name}}</i>
+    <br> 
+  {% endfor %}
 
   <div class="row">
     <div class="col">

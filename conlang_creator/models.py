@@ -6,7 +6,7 @@ class Conlang(models.Model):
     english_name = models.CharField(max_length=80)
     description = models.TextField(max_length=999999)
     # user_id = models.CharField(max_length=80)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # def __init__(self, original_name, english_name, description):
     #     self.original_name = original_name
     #     self.english_name = english_name

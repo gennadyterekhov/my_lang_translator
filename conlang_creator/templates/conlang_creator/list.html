@@ -10,7 +10,8 @@
   </h1>
   <br>
   {% for conlang in conlangs %}
-    {{ conlang.original_name }}
+    <a href="{% url 'conlang_creator:profile' conlang.id %}">{{ conlang.original_name }}</a> <i>{{ conlang.english_name}}</i> - 
+    by [<a href="{% url 'user:profile' conlang.user.id %}">{{ conlang.user.name }}</a>]
     <br> 
   {% endfor %}
 

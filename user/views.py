@@ -6,7 +6,8 @@ def profile(request, user_id):
     title = 'Profile'
     template = 'user/profile.html'
     user = get_object_or_404(User, pk=user_id)
-    context = {'title': title, 'user': user}
+    conlangs = user.conlang_set.all()
+    context = {'title': title, 'user': user, 'conlangs': conlangs}
     return render(request, template, context)
 
 
