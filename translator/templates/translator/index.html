@@ -20,7 +20,7 @@
       <form>
         <!-- <input type="text" name="text"> -->
         <div class="form-group">
-          <textarea rows="10" cols="80" name="text" placeholder="Enter text to translate">{{ text_to_translate }}</textarea>
+          <textarea rows="10" cols="80" name="text" class="form-control" placeholder="Enter text to translate">{{ text_to_translate }}</textarea>
         </div>
         
         <input type="submit" value="Translate">
@@ -28,13 +28,13 @@
     </div>
     <div class="col">
       <div class="form-group">
-        <textarea rows="10" cols="80" name="result" placeholder="Esperanto will be here">{{ esperanto }}</textarea>
+        <textarea rows="10" cols="80" name="result" class="form-control" placeholder="Esperanto will be here">{{ esperanto }}</textarea>
       </div>
       Переведено сервисом «<a href="http://translate.yandex.ru">Яндекс.Переводчик</a>» 
     </div>
     <div class="col">
       <div class="form-group">
-        <textarea rows="10" cols="80" name="result" placeholder="Amʔanavio will be here">{{ result }}</textarea>
+        <textarea rows="10" cols="80" name="result" class="form-control" placeholder="Amʔanavio will be here">{{ result }}</textarea>
       </div>
     </div>
   </div>

@@ -1,0 +1,17 @@
+{% extends "header.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h1>
+    Conlang list
+  </h1>
+  <br>
+  {% for conlang in conlangs %}
+    {{ conlang.original_name }}
+    <br> 
+  {% endfor %}
+
+{% endblock %}

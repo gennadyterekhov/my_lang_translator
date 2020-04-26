@@ -17,24 +17,33 @@
             <!-- <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li> -->
-            {% if request.session.email %}
+            {% if request.session.user_id  %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'user:profile' user.id %}">Profile</a>
               </li>
             {% endif %}
+
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'translator:index' %}">Translator</a>
+              <a class="nav-link" href="{% url 'conlang_creator:create' %}">Creator</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'conlang_creator:list' %}">Conlangs</a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'user:list' %}">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'translator:index' %}">Translator</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              {% if request.session.email %}
+              {% if request.session.user_id %}
                 <div class="container">
                   <div class="row">
-                    <div class="col"><a class="nav-link" href="{% url 'user:profile' user.id %}">{{ request.session.email }}</a></div>
+                    <!-- <div class="col"><a class="nav-link" href="{% url 'user:profile' user.id %}">{{ request.session.email }}</a></div> -->
                     <div class="col"><a class="nav-link" href="{% url 'registration:logout' %}">Logout</a></div>
                   </div>
                 </div>

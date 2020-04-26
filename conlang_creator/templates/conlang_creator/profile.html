@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h1>
+    {{ conlang.original_name }}
+  </h1>
+  <i>{{ conlang.english_name }}</i>
+  <br>
+  <i>by {{ conlang.user_name }} - <a href="{% url 'user:profile' conlang.user_id %}">{{ conlang.user_email }}</a></i>
+  <br>
+  {{ conlang.description }}
+  <br>
+
+  <div class="row">
+    <div class="col">
+      {{ conlang.consonants }}
+      <!-- <form>
+        <div class="form-group">
+          <textarea rows="10" cols="80" name="text" placeholder="Enter text to translate">{{ text_to_translate }}</textarea>
+        </div>
+        
+        <input type="submit" value="Translate">
+      </form> -->
+    </div>
+    <div class="col">
+      {{ conlang.vowels }}
+      <!-- <div class="form-group">
+        <textarea rows="10" cols="80" name="result" placeholder="Esperanto will be here">{{ esperanto }}</textarea>
+      </div>
+      Переведено сервисом «<a href="http://translate.yandex.ru">Яндекс.Переводчик</a>»  -->
+    </div>
+    <div class="col">
+      {{ conlang.endings }}
+      <!-- <div class="form-group">
+        <textarea rows="10" cols="80" name="result" placeholder="Amʔanavio will be here">{{ result }}</textarea>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
