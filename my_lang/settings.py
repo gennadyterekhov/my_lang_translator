@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'phonology.apps.PhonologyConfig',
     'conlang_creator.apps.ConlangCreatorConfig',
     'user.apps.UserConfig',
     'registration.apps.RegistrationConfig',

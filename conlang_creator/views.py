@@ -2,14 +2,41 @@ from django.shortcuts import render, get_object_or_404
 from user.models import User
 
 from conlang_creator.models import Conlang
-
+from phonology.models import Place, Manner, Consonant, Vowel, VowelHorizontalPosition, VowelVerticalPosition, Roundedness, Length
 
 def create(request):
     title = 'Conlang creator'
     template = 'conlang_creator/create.html'
 
+    places = Place.objects.all()
+    manners = Manner.objects.all()
+    consonants = Consonant.objects.all()
+
+    vowels = Vowel.objects.all()
+    horizontals = VowelHorizontalPosition.objects.all()
+    verticals = VowelVerticalPosition.objects.all()
+    roundednesses = Roundedness.objects.all()
+    lengths = Length.objects.all()
+    print(vowels)
+    print(horizontals)
+    print(verticals)
+    print(roundednesses)
+    print(lengths)
+
+
     user = get_object_or_404(User, pk=request.session['user_id'])
-    context = {'title': title, 'user': user}
+    context = {
+        'title': title,
+        'user': user,
+        'places': places,
+        'manners': manners,
+        'consonants': consonants,
+        'vowels': vowels,
+        'horizontals': horizontals,
+        'verticals': verticals,
+        'roundednesses': roundednesses,
+        'lengths': lengths
+        }
     return render(request, template, context)
 
 def create_check(request):

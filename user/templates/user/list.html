@@ -10,7 +10,7 @@
   </h1>
   <br>
   {% for user in users %}
-    {{ user.name }} - <a href="{% url 'user:profile' user.id %}">{{ user.email }}</a>
+    <a href="{% url 'user:profile' user.id %}">{{ user.name }}</a>
     <br>
     
   {% endfor %}

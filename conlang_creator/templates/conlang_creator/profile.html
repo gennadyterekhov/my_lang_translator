@@ -10,7 +10,7 @@
   </h1>
   <i>{{ conlang.english_name }}</i>
   <br>
-  <i>by {{ conlang.user.name }} <a href="{% url 'user:profile' conlang.user.id %}">{{ conlang.user.email }}</a></i>
+  <i>by <a href="{% url 'user:profile' conlang.user.id %}">{{ conlang.user.name }}</a></i>
 
   <br>
   <p>{{ conlang.description }}</p>

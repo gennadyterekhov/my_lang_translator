@@ -19,7 +19,7 @@
             </li> -->
             {% if request.session.user_id  %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'user:profile' user.id %}">Profile</a>
+                <a class="nav-link" href="{% url 'user:profile' request.session.user_id %}">Profile</a>
               </li>
             {% endif %}
 
