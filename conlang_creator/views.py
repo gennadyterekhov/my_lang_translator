@@ -17,11 +17,11 @@ def create(request):
     verticals = VowelVerticalPosition.objects.all()
     roundednesses = Roundedness.objects.all()
     lengths = Length.objects.all()
-    print(vowels)
-    print(horizontals)
-    print(verticals)
-    print(roundednesses)
-    print(lengths)
+    # print(vowels)
+    # print(horizontals)
+    # print(verticals)
+    # print(roundednesses)
+    # print(lengths)
 
 
     user = get_object_or_404(User, pk=request.session['user_id'])
@@ -48,8 +48,40 @@ def create_check(request):
     english_name = request.POST.get('english_name', False)
     description = request.POST.get('description', False)
 
-    conlang = Conlang(original_name=original_name, english_name=english_name, description=description, user=user)
-    conlang.save()
+    consonants = request.POST.get('consonants', False)
+    vowels = request.POST.get('vowels', False)
+
+    syllable_structure = request.POST.get('syllable_structure', False)
+    word_structure = request.POST.get('word_structure', False)
+
+    consonants_objects = []
+    # так было на старой Бд
+    # for con in consonants.split(' '):
+    #     con_obj = Consonant.objects.filter(ipa=con)[0]
+    #     consonants_objects.append(con_obj)
+    # vowels_objects = []
+    # for vow in vowels.split(' '):
+    #     vow_obj = Vowel.objects.filter(ipa=vow)[0]
+    #     vowels_objects.append(vow_obj)
+
+
+
+    conlang = Conlang.objects.create(
+        original_name=original_name,
+        english_name=english_name,
+        description=description,
+        user=user,
+        consonants=consonants,
+        vowels=vowels,
+        syllable_structure=syllable_structure,
+        word_structure=word_structure
+        )
+    # consonants=consonants_objects, vowels=vowels_objects
+
+    # на старой бд
+    # conlang.consonants.set(consonants_objects)
+    # conlang.vowels.set(vowels_objects)
+
 
     template = 'conlang_creator/profile.html'
     context = {'title': title, 'user': user, 'conlang': conlang}
@@ -59,9 +91,32 @@ def create_check(request):
 def profile(request, conlang_id):
     user = get_object_or_404(User, pk=request.session['user_id'])
     conlang = get_object_or_404(Conlang, pk=conlang_id)
+
+
+    # на старой БД
+    # consonants = conlang.consonants.all()
+    # vowels = conlang.vowels.all()
+
+    consonants = conlang.consonants.split(' ')
+    vowels = conlang.vowels.split(' ')
+
+
+    words_1 = []
+    words_2 = []
+    for c in consonants:
+        for v in vowels:
+            word = c + v
+            words_1.append(word)
+            for c2 in consonants:
+                for v2 in vowels:
+                    word = c + v + c2 + v2
+                    words_2.append(word)
+    
+
+
     title = 'Conlang profile'
     template = 'conlang_creator/profile.html'
-    context = {'title': title, 'user': user, 'conlang': conlang}
+    context = {'title': title, 'user': user, 'conlang': conlang, 'consonants': consonants, 'vowels': vowels, 'words_1': words_1, 'words_2': words_2}
     return render(request, template, context)
 
 # <a href="{% url 'conlang_creator:profile' conlang.id %}">{{ conlang.english_name }}</a>

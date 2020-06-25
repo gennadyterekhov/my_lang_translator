@@ -44,7 +44,7 @@
         <div class="form-group">
           <input type="text" name="consonants" class="form-control" placeholder="Copy desired consonats from the table. Space-separated" required>
         </div>
-        <table>
+        <table class="table">
           {% for manner in manners %}
             <tr>
               {% for place in places %}
@@ -64,15 +64,17 @@
         <div class="form-group">
           <input type="text" name="vowels" class="form-control" placeholder="Copy desired vowels from the table. Space-separated" required>
         </div>
-        <table>
+        <table class="table">
           {% for vertical in verticals %}
             <tr>
               {% for horizontal in horizontals %}
                 <td>
                   {% for vowel in vowels %}
-                    {% if vowel.horizontal == horizontal and vowel.vertical == vertical %}
-                      {{ vowel.ipa }}
-                    {% endif %}
+                    {% for roundedness in roundednesses %}
+                      {% if vowel.horizontal == horizontal and vowel.vertical == vertical and vowel.roundedness == roundedness %}
+                        {{ vowel.ipa }}
+                      {% endif %}
+                    {% endfor %}
                   {% endfor %}
                 </td>
               {% endfor %}
@@ -81,8 +83,21 @@
         </table>
       </div>
     </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" name="syllable_structure" class="form-control" placeholder="Syllable structure. C - consonant, V - vowel, Nas - nasal consonant">
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" name="word_structure" class="form-control" placeholder="Word structure. O - open syllable, C - closed syllable">
+        </div>
+      </div>
+    </div>
     <br>
     <input type="submit" value="Create" class="btn btn-success">
+    <br>
   </form>
 </div>
 
