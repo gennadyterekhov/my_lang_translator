@@ -1,31 +1,41 @@
 {% extends "header.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 
-<h1>
-  here you can translate something
-</h1>
-<br>
-
 <div class="container-fluid">
+  <h1>
+    Here you can translate any language* into Amʔanavio
+  </h1>
+  <i>*that is supported by Yandex translator</i>
+  <br>
+  <br>
+  Please don't paste large texts - I have API limits
+  <br>
+  <!-- <br> -->
+
   <div class="row">
     <div class="col">
       <form>
         <!-- <input type="text" name="text"> -->
-        <textarea rows="10" cols="80" name="text" placeholder="Enter text to translate">{{ text_to_translate }}</textarea>
-        <br>
-        <input type="submit">
+        <div class="form-group">
+          <textarea rows="10" cols="80" name="text" class="form-control" placeholder="Enter text to translate">{{ text_to_translate }}</textarea>
+        </div>
+        
+        <input type="submit" value="Translate">
       </form>
     </div>
     <div class="col">
-      <textarea rows="10" cols="80" name="result" placeholder="esperanto will be here">{{ esperanto }}</textarea>
-      <br>
-      Переведено сервисом «Яндекс.Переводчик» <a href="http://translate.yandex.ru"></a>
+      <div class="form-group">
+        <textarea rows="10" cols="80" name="result" class="form-control" placeholder="Esperanto will be here">{{ esperanto }}</textarea>
+      </div>
+      Переведено сервисом «<a href="http://translate.yandex.ru">Яндекс.Переводчик</a>» 
     </div>
     <div class="col">
-      <textarea rows="10" cols="80" name="result" placeholder="result will be here">{{ result }}</textarea>
+      <div class="form-group">
+        <textarea rows="10" cols="80" name="result" class="form-control" placeholder="Amʔanavio will be here">{{ result }}</textarea>
+      </div>
     </div>
   </div>
 </div>

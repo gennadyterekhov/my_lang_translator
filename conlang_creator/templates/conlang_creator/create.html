@@ -1,0 +1,105 @@
+{% extends "header.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  
+  <form action="{% url 'conlang_creator:create_check' %}" method="POST">
+    <div class="row">
+      
+      <div class="col-4">
+        <h1>
+          {{ title }}
+        </h1>
+        <br>
+        {% if error_message %}
+          <span style="color:red"><i>{{ error_message }}</i></span>
+          <br><br>
+        {% endif %}
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="original_name" class="form-control" placeholder="Original name" required>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="english_name" class="form-control" placeholder="English name" required>
+        </div>
+
+        <div class="form-group">
+          <input type="hidden" name="user_id" class="form-control" value="{{ user.id }}" required>
+        </div>
+
+        <div class="form-group">
+          <textarea rows="3" cols="80" name="description" class="form-control" placeholder="Description. This can be as long as you like."></textarea>
+        </div>
+          
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" name="consonants" class="form-control" placeholder="Copy desired consonats from the table. Space-separated" required>
+        </div>
+        <table class="table">
+          {% for manner in manners %}
+            <tr>
+              {% for place in places %}
+                <td>
+                  {% for consonant in consonants %}
+                    {% if consonant.manner == manner and consonant.place == place %}
+                      {{ consonant.ipa }}
+                    {% endif %}
+                  {% endfor %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" name="vowels" class="form-control" placeholder="Copy desired vowels from the table. Space-separated" required>
+        </div>
+        <table class="table">
+          {% for vertical in verticals %}
+            <tr>
+              {% for horizontal in horizontals %}
+                <td>
+                  {% for vowel in vowels %}
+                    {% for roundedness in roundednesses %}
+                      {% if vowel.horizontal == horizontal and vowel.vertical == vertical and vowel.roundedness == roundedness %}
+                        {{ vowel.ipa }}
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" name="syllable_structure" class="form-control" placeholder="Syllable structure. C - consonant, V - vowel, Nas - nasal consonant">
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" name="word_structure" class="form-control" placeholder="Word structure. O - open syllable, C - closed syllable">
+        </div>
+      </div>
+    </div>
+    <br>
+    <input type="submit" value="Create" class="btn btn-success">
+    <br>
+  </form>
+</div>
+
+
+{% endblock %}

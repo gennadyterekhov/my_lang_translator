@@ -1,0 +1,25 @@
+<table>
+    <thead>
+      <th scope="col"></th>
+      {% for place in places %}
+        <!-- <th scope="col">Voiceless {{ place.name }}</th> -->
+        <th scope="col">{{ place.name }}</th>
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for manner in manners %}
+        <tr>
+          <th scope="row">{{ manner.name }}</th>
+          {% for place in places %}
+            <td>
+              {% for consonant in consonants %}
+                {% if consonant.manner == manner and consonant.place == place %}
+                  {{ consonant.ipa }}
+                {% endif %}
+              {% endfor %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>

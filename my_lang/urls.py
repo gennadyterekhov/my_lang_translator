@@ -18,8 +18,14 @@ from django.urls import path, include
 
 from . import views
 
+# app_name = 'my_lang'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.index, name='site_index'),
+    path('index/', views.index),
+    path('home/', views.index),
     path('translate/', include('translator.urls')),
+    path('sign/', include('registration.urls')),
+    path('u/', include('user.urls')),
+    path('conlang_creator/', include('conlang_creator.urls')),
 ]

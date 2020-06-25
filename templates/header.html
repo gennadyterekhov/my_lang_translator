@@ -7,18 +7,48 @@
   <body>
     <div>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="{% url 'site_index' %}">Conlang creator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li> -->
+            {% if request.session.user_id  %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:profile' request.session.user_id %}">Profile</a>
+              </li>
+            {% endif %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'conlang_creator:create' %}">Creator</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'conlang_creator:list' %}">Conlangs</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user:list' %}">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="translate/">Translator</a>
+              <a class="nav-link" href="{% url 'translator:index' %}">Translator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              {% if request.session.user_id %}
+                <div class="container">
+                  <div class="row">
+                    <div class="col"><a class="nav-link" href="{% url 'registration:logout' %}">Logout</a></div>
+                  </div>
+                </div>
+              {% else %}
+                <a class="nav-link" href="{% url 'registration:login' %}">Sign in</a>
+              {% endif %}
             </li>
           </ul>
         </div>
@@ -27,10 +57,10 @@
     <br>
     <br>
     <br>
-    <br>
+
     <div class="container-fluid">
-        {% block content %}
-        {% endblock %}
+      {% block content %}
+      {% endblock %}
     </div>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
